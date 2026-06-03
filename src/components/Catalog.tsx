@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "@/components/ui/icon";
 
+const EXPORT_URL = "https://functions.poehali.dev/da1c9496-f4a0-4344-8624-4000b2c8535e";
+
 const categories = [
   "Все",
   "Стройматериалы",
@@ -151,6 +153,23 @@ const products = [
 export default function Catalog() {
   const [activeCategory, setActiveCategory] = useState("Все");
   const [cart, setCart] = useState<number[]>([]);
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const res = await fetch(EXPORT_URL);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "price-list.xlsx";
+      a.click();
+      URL.revokeObjectURL(url);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   const filtered = activeCategory === "Все"
     ? products
@@ -266,13 +285,23 @@ export default function Catalog() {
           <p className="text-neutral-500 text-sm">
             Показано {filtered.length} из {products.length} товаров
           </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 text-sm uppercase tracking-wide border border-black px-6 py-3 hover:bg-black hover:text-white transition-all duration-300"
-          >
-            <Icon name="FileText" size={15} />
-            Запросить полный прайс
-          </a>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={handleDownload}
+              disabled={downloading}
+              className="inline-flex items-center gap-2 text-sm uppercase tracking-wide bg-black text-white px-6 py-3 hover:bg-neutral-800 transition-all duration-300 disabled:opacity-60 cursor-pointer disabled:cursor-wait"
+            >
+              <Icon name={downloading ? "Loader2" : "Download"} size={15} />
+              {downloading ? "Загрузка..." : "Скачать прайс Excel"}
+            </button>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 text-sm uppercase tracking-wide border border-black px-6 py-3 hover:bg-black hover:text-white transition-all duration-300"
+            >
+              <Icon name="FileText" size={15} />
+              Запросить полный прайс
+            </a>
+          </div>
         </div>
       </div>
     </section>

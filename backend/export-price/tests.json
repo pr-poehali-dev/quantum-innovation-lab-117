@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "name": "Генерация Excel прайса",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
