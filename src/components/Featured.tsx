@@ -1,8 +1,8 @@
 const advantages = [
-  { icon: "📦", title: "Широкий ассортимент", desc: "Более 10 000 позиций: от цемента до умного дома" },
-  { icon: "🏗️", title: "Опт и розница", desc: "Специальные условия для строительных компаний и частных клиентов" },
-  { icon: "🚚", title: "Быстрая доставка", desc: "Доставка по городу и области, самовывоз со склада" },
-  { icon: "✅", title: "Проверенные бренды", desc: "Только сертифицированная продукция от ведущих производителей" },
+  { icon: "📦", title: "Более 40 000 товаров", desc: "Стройматериалы, инструмент, электрика, сантехника, отделка — всё на одном складе" },
+  { icon: "🏗️", title: "Опт и розница", desc: "Скидки для строительных компаний, ИП и частных застройщиков с первого заказа" },
+  { icon: "🚚", title: "Доставка день-в-день", desc: "Собственный автопарк, доставка по Москве и области в удобное время" },
+  { icon: "✅", title: "Гарантия качества", desc: "Только сертифицированная продукция: Knauf, Ceresit, Hilti, Bosch, DeWalt и другие" },
 ];
 
 export default function Featured() {
@@ -10,8 +10,8 @@ export default function Featured() {
     <div id="catalog" className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0 bg-white">
       <div className="flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2">
         <img
-          src="/images/mountain-landscape.jpg"
-          alt="Строительные материалы"
+          src="https://cdn.poehali.dev/projects/540880f0-b60a-472b-963e-dae7ed9ae297/files/227b6ddd-70ea-4a88-a8d7-e799a5300326.jpg"
+          alt="Склад строительных материалов"
           className="w-full h-full object-cover"
         />
       </div>
